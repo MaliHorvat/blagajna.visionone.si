@@ -8,7 +8,7 @@ const monthName = (ym) => { const [y, m] = ym.split('-'); return new Date(y, m -
 const userById = (id) => S.users.find(u => u.id === id);
 
 async function boot() {
-  try { const me = await get('auth/me'); S.user = me.user; S.users = me.users || []; S.currency = me.currency || 'EUR'; } catch (e) { S.user = null; }
+  try { const me = await get('auth'); S.user = me.user; S.users = me.users || []; S.currency = me.currency || 'EUR'; } catch (e) { S.user = null; }
   if (!S.user) return renderLogin();
   await loadLookups();
   renderShell();
@@ -24,7 +24,7 @@ function renderLogin() {
   const uI = h('input', { placeholder: 'uporabniško ime', autocomplete: 'username' });
   const pI = h('input', { type: 'password', placeholder: 'geslo', autocomplete: 'current-password' });
   const btn = h('button', { class: 'btn primary', style: 'width:100%' }, 'Prijava');
-  async function submit() { err.textContent = ''; btn.disabled = true; try { await post('auth/login', { username: uI.value.trim(), password: pI.value }); location.reload(); } catch (e) { err.textContent = e.message; btn.disabled = false; } }
+  async function submit() { err.textContent = ''; btn.disabled = true; try { await post('auth', { action: 'login', username: uI.value.trim(), password: pI.value }); location.reload(); } catch (e) { err.textContent = e.message; btn.disabled = false; } }
   btn.addEventListener('click', submit);
   [uI, pI].forEach(i => i.addEventListener('keydown', e => { if (e.key === 'Enter') submit(); }));
   clear(root(), h('div', { class: 'login' }, h('div', { class: 'card' },
@@ -349,7 +349,7 @@ function importDialog() {
     { label: 'Prekliči' },
     { label: 'Uvozi', kind: 'primary', onClick: async () => {
       if (!parsed.length) { toast('Najprej izberi datoteko', true); return false; }
-      const res = await post('import', { account_id: +accSel.value, rows: parsed });
+      const res = await post('transactions?action=import', { account_id: +accSel.value, rows: parsed });
       toast(`Uvoženih ${res.inserted}, preskočenih ${res.skipped}`); afterChange();
     } },
   ]);
@@ -386,10 +386,10 @@ function passwordDialog() {
   const c = h('input', { type: 'password', placeholder: 'trenutno geslo' });
   const n = h('input', { type: 'password', placeholder: 'novo geslo (min 6)' });
   dialogBtns('Sprememba gesla', h('div', {}, labeled('Trenutno geslo', c), labeled('Novo geslo', n)), [
-    { label: 'Prekliči' }, { label: 'Shrani', kind: 'primary', onClick: async () => { await post('auth/password', { current: c.value, next: n.value }); toast('Geslo spremenjeno'); } },
+    { label: 'Prekliči' }, { label: 'Shrani', kind: 'primary', onClick: async () => { await post('auth', { action: 'password', current: c.value, next: n.value }); toast('Geslo spremenjeno'); } },
   ]);
 }
-async function logout() { try { await post('auth/logout'); } catch (e) {} location.reload(); }
+async function logout() { try { await post('auth', { action: 'logout' }); } catch (e) {} location.reload(); }
 
 // ───────── pomočniki dialogov ─────────
 function labeled(label, input) { return h('label', { class: 'f' }, h('span', {}, label), input); }
