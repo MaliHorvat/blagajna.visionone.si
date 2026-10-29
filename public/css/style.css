@@ -1,0 +1,124 @@
+:root{
+  --bg:#0e1512; --surface:#15201b; --surface2:#1b2a22; --line:#27362d; --ink:#e8f1ec; --muted:#8aa093;
+  --green:#2fae6b; --green-d:#248a55; --red:#e0623a; --blue:#4f7fff; --gold:#d2922a; --purple:#a371f7;
+  --r:12px; --sh:0 6px 22px rgba(0,0,0,.35);
+}
+*{box-sizing:border-box;margin:0}
+html,body{height:100%}
+body{background:var(--bg);color:var(--ink);font-family:system-ui,'Segoe UI',Roboto,sans-serif;font-size:15px;line-height:1.5;-webkit-font-smoothing:antialiased}
+button{font:inherit;cursor:pointer}
+a{color:var(--green);text-decoration:none}
+.hidden{display:none!important}
+.muted{color:var(--muted)}
+.mono{font-variant-numeric:tabular-nums}
+.pos{color:var(--green)} .neg{color:var(--red)}
+
+/* prijava */
+.login{min-height:100vh;display:grid;place-items:center;padding:20px;background:radial-gradient(900px 400px at 50% -10%,rgba(47,174,107,.18),transparent)}
+.login .card{background:var(--surface);border:1px solid var(--line);border-radius:16px;box-shadow:var(--sh);padding:30px;width:340px;max-width:100%}
+.brand{display:flex;align-items:center;gap:10px;font-size:22px;font-weight:800}
+.brand .dot{width:34px;height:34px;border-radius:9px;background:linear-gradient(135deg,var(--green),#1f6f48);display:grid;place-items:center;color:#fff;font-size:18px}
+
+/* ogrodje */
+.app{max-width:960px;margin:0 auto;padding:0 16px 90px}
+.top{position:sticky;top:0;z-index:5;display:flex;align-items:center;gap:12px;padding:14px 0;background:linear-gradient(var(--bg),var(--bg) 70%,transparent)}
+.top .brand{font-size:18px}
+.top .spacer{flex:1}
+.msel{display:flex;align-items:center;gap:6px;background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:4px}
+.msel button{border:0;background:none;color:var(--muted);padding:5px 9px;border-radius:7px;font-weight:700}
+.msel .lbl{color:var(--ink);font-weight:700;min-width:116px;text-align:center;text-transform:capitalize}
+.iconbtn{border:1px solid var(--line);background:var(--surface);color:var(--ink);border-radius:9px;width:38px;height:38px;display:grid;place-items:center;font-size:16px}
+.iconbtn:hover{border-color:var(--green)}
+
+/* kartice */
+.hero{display:grid;grid-template-columns:1.3fr 1fr 1fr;gap:12px;margin-bottom:16px}
+.card{background:var(--surface);border:1px solid var(--line);border-radius:var(--r);padding:16px}
+.card .l{color:var(--muted);font-size:12px;text-transform:uppercase;letter-spacing:.5px}
+.card .big{font-size:26px;font-weight:800;margin-top:4px;font-variant-numeric:tabular-nums}
+.card .sub{font-size:12.5px;margin-top:2px}
+@media(max-width:720px){.hero{grid-template-columns:1fr 1fr}.hero .card:first-child{grid-column:1/-1}}
+
+.accs{display:flex;gap:10px;overflow-x:auto;padding-bottom:4px;margin-bottom:18px}
+.acc{min-width:150px;background:var(--surface);border:1px solid var(--line);border-left:4px solid var(--c,#4f7fff);border-radius:11px;padding:12px 14px;flex:none}
+.acc .n{font-weight:700;font-size:14px}
+.acc .b{font-size:18px;font-weight:800;margin-top:3px;font-variant-numeric:tabular-nums}
+.acc .k{font-size:11px;color:var(--muted);text-transform:uppercase}
+
+.panel{background:var(--surface);border:1px solid var(--line);border-radius:var(--r);margin-bottom:16px;overflow:hidden}
+.panel h2{font-size:14px;padding:13px 16px;border-bottom:1px solid var(--line);display:flex;align-items:center;gap:10px}
+.panel h2 .spacer{flex:1}
+.panel .body{padding:14px 16px}
+
+.bars{display:flex;align-items:flex-end;gap:10px;height:120px;padding:8px 4px}
+.bar{flex:1;display:flex;flex-direction:column;justify-content:flex-end;align-items:center;gap:4px;height:100%}
+.bar .col{width:100%;display:flex;gap:3px;align-items:flex-end;height:100%}
+.bar .col i{flex:1;border-radius:4px 4px 0 0;min-height:2px}
+.bar .in{background:var(--green)} .bar .ex{background:var(--red)}
+.bar .m{font-size:11px;color:var(--muted)}
+
+.catrow{display:flex;align-items:center;gap:10px;padding:7px 0}
+.catrow .ic{width:26px;text-align:center}
+.catrow .nm{flex:1}
+.catrow .track{height:7px;background:var(--surface2);border-radius:5px;overflow:hidden;flex:2;max-width:200px}
+.catrow .fill{height:100%;border-radius:5px}
+.catrow .amt{font-variant-numeric:tabular-nums;font-weight:700;min-width:80px;text-align:right}
+
+/* transakcije */
+.tx{display:flex;align-items:center;gap:12px;padding:10px 16px;border-bottom:1px solid var(--line)}
+.tx:last-child{border-bottom:0}
+.tx .ic{width:34px;height:34px;border-radius:9px;display:grid;place-items:center;font-size:16px;background:var(--surface2);flex:none}
+.tx .mid{flex:1;min-width:0}
+.tx .t1{font-weight:600}
+.tx .t2{font-size:12.5px;color:var(--muted)}
+.tx .amt{font-weight:800;font-variant-numeric:tabular-nums;white-space:nowrap}
+.tx .person{width:8px;height:8px;border-radius:50%;flex:none}
+.day{padding:8px 16px;font-size:12px;color:var(--muted);background:var(--surface2);text-transform:capitalize}
+
+/* cilji */
+.goal{padding:14px 16px;border-bottom:1px solid var(--line)}
+.goal:last-child{border-bottom:0}
+.goal .top2{display:flex;align-items:center;gap:10px;margin-bottom:8px}
+.goal .nm{font-weight:700;flex:1}
+.goal .track{height:12px;background:var(--surface2);border-radius:7px;overflow:hidden}
+.goal .fill{height:100%;border-radius:7px}
+.goal .nums{display:flex;justify-content:space-between;font-size:13px;margin-top:6px}
+
+/* gumbi / obrazci */
+.btn{display:inline-flex;align-items:center;gap:7px;padding:9px 15px;border:1px solid var(--line);background:var(--surface2);color:var(--ink);border-radius:9px;font-weight:700;font-size:14px}
+.btn:hover{border-color:var(--green)}
+.btn.primary{background:var(--green);border-color:var(--green);color:#06130d}
+.btn.primary:hover{background:var(--green-d)}
+.btn.red{background:var(--red);border-color:var(--red);color:#fff}
+.btn.sm{padding:6px 11px;font-size:12.5px}
+.btn.ghost{background:transparent}
+.btn:disabled{opacity:.5;cursor:default}
+label.f{display:block;margin-bottom:12px;font-size:13px;color:var(--muted)}
+label.f span{display:block;margin-bottom:5px}
+input,select,textarea{width:100%;padding:10px 12px;border:1px solid var(--line);background:var(--bg);color:var(--ink);border-radius:9px;font:inherit;font-size:15px}
+input:focus,select:focus{outline:none;border-color:var(--green)}
+.err{color:var(--red);font-size:13px;margin:8px 0;min-height:18px}
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.seg{display:flex;border:1px solid var(--line);border-radius:10px;overflow:hidden;margin-bottom:12px}
+.seg button{flex:1;padding:10px;border:0;background:var(--surface);color:var(--muted);font-weight:700}
+.seg button.on{color:#fff}
+.seg button.on.income{background:var(--green)} .seg button.on.expense{background:var(--red)} .seg button.on.transfer{background:var(--blue)}
+
+/* spodnja navigacija */
+.nav{position:fixed;left:0;right:0;bottom:0;background:var(--surface);border-top:1px solid var(--line);display:flex;z-index:10}
+.nav a{flex:1;text-align:center;padding:10px 4px 12px;color:var(--muted);font-size:11px;font-weight:700}
+.nav a.on{color:var(--green)}
+.nav a .ic{display:block;font-size:20px;margin-bottom:2px}
+.fab{position:fixed;right:18px;bottom:72px;width:58px;height:58px;border-radius:50%;background:var(--green);color:#06130d;border:0;font-size:30px;box-shadow:var(--sh);z-index:11;display:grid;place-items:center}
+
+.back{position:fixed;inset:0;background:rgba(0,0,0,.6);display:grid;place-items:end center;z-index:50}
+.dlg{background:var(--surface);border:1px solid var(--line);border-radius:18px 18px 0 0;box-shadow:var(--sh);width:520px;max-width:100%;max-height:92vh;overflow:auto;padding:22px}
+@media(min-width:560px){.back{place-items:center}.dlg{border-radius:16px}}
+.dlg h3{margin-bottom:16px}
+.dlg .acts{display:flex;justify-content:flex-end;gap:10px;margin-top:18px}
+.chips{display:flex;gap:6px;flex-wrap:wrap}
+.chip{padding:7px 11px;border:1px solid var(--line);border-radius:20px;background:var(--surface2);font-size:13px;font-weight:600}
+.chip.on{border-color:var(--green);background:color-mix(in srgb,var(--green) 16%,var(--surface2))}
+.toast{position:fixed;bottom:86px;left:50%;transform:translateX(-50%);background:#fff;color:#111;padding:11px 18px;border-radius:10px;font-weight:700;box-shadow:var(--sh);z-index:100}
+.toast.err{background:var(--red);color:#fff}
+.empty{text-align:center;color:var(--muted);padding:30px 14px}
+.pill{font-size:12px;padding:2px 9px;border-radius:7px;background:var(--surface2);color:var(--muted)}

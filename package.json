@@ -1,0 +1,15 @@
+{
+  "name": "hranilnik",
+  "version": "1.0.0",
+  "description": "Hranilnik – organizator domačih financ in mesečnih prihrankov za dve osebi",
+  "private": true,
+  "license": "UNLICENSED",
+  "engines": { "node": ">=20" },
+  "scripts": {
+    "test": "node --test test/api.test.js",
+    "keygen": "node scripts/keygen.js"
+  },
+  "dependencies": {
+    "mysql2": "^3.11.0"
+  }
+}
